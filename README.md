@@ -40,6 +40,11 @@ filter {
     }
   }
 
+  grok {
+    match => { "message" => "%{HOSTNAME:host} %{INT:port}: \[%{WORD:country_code}\] %{DAY:day} %{MONTH:month} %{MONTHDAY:monthday} %{TIME:time} %{YEAR:year}: %{GREEDYDATA:first_message}  \(%{INT:event_id}\) - %{GREEDYDATA:second_message}" }
+  }
+
+
   # もし不要なら分割されたフィールドを削除
   mutate {
     remove_field => ["column2"]
