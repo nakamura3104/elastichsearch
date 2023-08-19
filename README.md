@@ -67,3 +67,21 @@ output {
 }
 
 ```
+ - マッチしないinputがあった場合の処理
+
+```
+output {
+  if "_grokparsefailure" in [tags] {
+    elasticsearch {
+      hosts => ["your-elasticsearch-host:9200"]
+      index => "grok-failures"
+    }
+  } else {
+    elasticsearch {
+      hosts => ["your-elasticsearch-host:9200"]
+      index => "normal-index"
+    }
+  }
+}
+
+```
