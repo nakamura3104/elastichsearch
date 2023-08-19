@@ -3,6 +3,15 @@
 # logstash 
 ```
 input {
+  s3 {
+    access_key_id => "YOUR_ACCESS_KEY"
+    secret_access_key => "YOUR_SECRET_KEY"
+    region => "us-west-1" # 適切なリージョンを指定してください
+    bucket => "your-s3-bucket-name"
+    interval => 60 # ポーリング間隔(秒)
+    # その他のオプションも設定可能
+  }
+
   file {
     path => "/path/to/your/csvfile.csv"
     start_position => "beginning"
