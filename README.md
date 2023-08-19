@@ -1,6 +1,6 @@
 # elastichsearch
 
-# logstash
+# logstash 
 ```
 input {
   file {
@@ -22,6 +22,14 @@ filter {
   csv {
     separator => ","
     columns => ["column1", "column2", "column3"]
+  }
+
+  mutate {
+    split => { "column2" => " " }
+    add_field => {
+      "field1" => "%{[column2][0]}"
+      "field2" => "%{[column2][1]}"
+    }
   }
 }
 
