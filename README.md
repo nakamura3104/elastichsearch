@@ -26,10 +26,23 @@ filter {
 
   mutate {
     split => { "column2" => " " }
-    add_field => {
-      "field1" => "%{[column2][0]}"
-      "field2" => "%{[column2][1]}"
+  }
+
+  # 分割結果を新しいフィールドに保存
+  if [column2][0] {
+    mutate {
+      add_field => { "field1" => "%{[column2][0]}" }
     }
+  }
+  if [column2][1] {
+    mutate {
+      add_field => { "field2" => "%{[column2][1]}" }
+    }
+  }
+
+  # もし不要なら分割されたフィールドを削除
+  mutate {
+    remove_field => ["column2"]
   }
 }
 
