@@ -131,3 +131,22 @@ output {
 }
 
 ```
+
+```
+#すでにinputでcodecを使っている場合
+input {
+    file {
+        path => "your_log_path.log"
+        codec => "plain"
+    }
+}
+
+filter {
+    multiline {
+        pattern => "YOUR_PATTERN_HERE"
+        what => "previous"
+    }
+}
+
+
+```
