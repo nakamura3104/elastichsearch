@@ -99,6 +99,15 @@ filter {
   }
 }
 
+
+# 別のパターン
+filter {
+  date {
+    match => ["year-month-day hour:minute:second", "yyyy-MM-dd HH:mm:ss"]
+    target => "@timestamp"
+  }
+}
+
 ```
 
 
