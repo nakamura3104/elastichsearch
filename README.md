@@ -85,3 +85,18 @@ output {
 }
 
 ```
+
+ - ログのタイムスタンプからの取得
+
+```
+filter {
+  grok {
+    match => { "message" => "%{NUMBER:id}  %{TIMESTAMP_ISO8601:logdate} %{HOSTNAME:host} %{WORD:event_source} - - -" }
+  }
+  date {
+    match => [ "logdate", "ISO8601" ]
+    target => "@timestamp"
+  }
+}
+
+```
