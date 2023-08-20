@@ -150,3 +150,14 @@ filter {
 
 
 ```
+
+- ファイル名を追加
+
+```
+filter {
+  mutate {
+    add_field => { "filename" => "%{[@metadata][s3][key]}" }
+  }
+}
+
+```
