@@ -100,3 +100,34 @@ filter {
 }
 
 ```
+
+
+ - マルチラインを１行にする
+
+```
+input {
+  # ここでは例としてfileプラグインを使用していますが、実際の環境に合わせて適切なプラグインを選択してください。
+  file {
+    path => "/path/to/your/logfile.log"
+    start_position => "beginning"
+    sincedb_path => "/dev/null" # テスト用途の場合、常に最初からファイルを読むようにする
+
+    # multilineの設定
+    codec => multiline {
+      # 行が yyyy-mm-dd で始まる場合、新しいイベントの開始として認識します。
+      pattern => "^\d{4}-\d{2}-\d{2}"
+      negate => true
+      what => "previous"
+    }
+  }
+}
+
+filter {
+  # 必要に応じてフィルタリングを追加
+}
+
+output {
+  # 出力設定
+}
+
+```
