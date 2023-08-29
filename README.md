@@ -214,3 +214,26 @@ filter {
 }
 
 ```
+
+
+
+git clone https://github.com/dgunter/evtxtoelk.git
+cd evtxtoelk
+依存関係をインストール:
+
+bash
+Copy code
+pip install -r requirements.txt
+2. 使用方法:
+.evtxファイルをElasticsearchに変換:
+
+bash
+Copy code
+python EvtxToElk.py -i INPUT.evtx -e http://elasticsearch_url:port
+ここで、INPUT.evtxは変換したい.evtxファイルのパスを指し、http://elasticsearch_url:portはElasticsearchインスタンスのURLとポートを指します。
+
+.evtxファイルをCSVに変換:
+
+bash
+Copy code
+python EvtxToElk.py -i INPUT.evtx -c OUTPUT.csv
