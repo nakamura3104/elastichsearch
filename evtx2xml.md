@@ -4,7 +4,7 @@
 
     `requirements.txt`:
     ```
-    evtx
+    python-evtx
     ```
 
     インストールコマンド:
@@ -17,11 +17,11 @@
     `evtx_to_xml.py`:
     ```python
     import sys
-    import evtx
+    from Evtx.Evtx import Evtx
 
     def evtx_to_xml(evtx_file_path, output_xml_file_path):
         with open(output_xml_file_path, 'w', encoding='utf-8') as xml_output:
-            with evtx.Evtx(evtx_file_path) as log:
+            with Evtx(evtx_file_path) as log:
                 xml_output.write(log.xml())
 
     if __name__ == "__main__":
