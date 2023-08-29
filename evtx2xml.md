@@ -17,12 +17,13 @@
     `evtx_to_xml.py`:
     ```python
     import sys
-    from Evtx.Evtx import Evtx
+    from Evtx.Evtx import FileHeader
 
     def evtx_to_xml(evtx_file_path, output_xml_file_path):
         with open(output_xml_file_path, 'w', encoding='utf-8') as xml_output:
-            with Evtx(evtx_file_path) as log:
-                xml_output.write(log.xml())
+            with open(evtx_file_path, 'rb') as log:
+                header = FileHeader(log)
+                xml_output.write(header.xml())
 
     if __name__ == "__main__":
         if len(sys.argv) < 3:
