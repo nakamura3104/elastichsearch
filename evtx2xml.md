@@ -40,3 +40,17 @@
     ```
     python evtx_to_xml.py your_input.evtx your_output.xml
     ```
+
+
+3. logstashのフィルター
+
+```
+filter {
+  xml {
+    source => "message"
+    target => "parsed_xml"
+    force_array => false
+  }
+}
+
+```
